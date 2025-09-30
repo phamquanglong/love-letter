@@ -107,6 +107,18 @@ function init() {
   // Audio toggle
   let isMusicPlaying = false;
 
+  // Auto-play music when page loads
+  bgMusic.play()
+    .then(() => {
+      audioBtn.innerHTML = '<i class="fas fa-pause"></i>';
+      isMusicPlaying = true;
+    })
+    .catch((e) => {
+      console.log("Auto-play prevented by browser, user needs to click music button");
+      audioBtn.innerHTML = '<i class="fas fa-music"></i>';
+      isMusicPlaying = false;
+    });
+
   // Function to handle music playing
   function handleMusicToggle() {
     if (isMusicPlaying) {
